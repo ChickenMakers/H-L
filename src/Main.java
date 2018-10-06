@@ -14,7 +14,7 @@ public class Main{
         System.out.print("타이머 실행 테스트 스케줄 전");
 
         myTimer.schedule(myTask,3000);
-        // 안녕하세요 ^^
+        // 안녕하세요 ^^ ㅎㅇㅎㅇ
         System.out.print("타이머 실행 테스트 스케줄 후");
 
 
