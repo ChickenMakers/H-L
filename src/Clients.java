@@ -42,6 +42,17 @@ public class Clients {
         return "hi";
     }
 
-
+    public void getChicken(TaskNode) {
+        int delay;
+        Timer timer = new Timer();
+        TimerTask task = new TimerTask() {
+            @Override
+            public void run() {
+                counter.getpaid(TaskNode, this.numOfClients);
+            }
+        };
+        delay = (int)(Math.floor(Math.random()*30000)+60000);
+        timer.schedule(task, delay);
+    }
 }
 
