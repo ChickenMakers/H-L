@@ -5,8 +5,8 @@ public class Clients {
 
     public int numOfClients;
     public String teamName;
-    public int guiededTableNum = null;
-    public Server server = null;
+    public int guiededTableNum = -1;
+    private Server server = null;
     public String selectedMenu = null;
 
     void  Clients(int numOfClients, String teamName, Server server) {

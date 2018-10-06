@@ -7,7 +7,7 @@ public class Server {
     }
 
     public int findFreeSeat(Clients targetClient){
-        Clients [][] seatState = Seats.getSeatState();
+        Clients [][] seatState = this.chickenSeats.getSeatState();
         int fullSeatCounter = 0;
 
         while (true){
@@ -21,7 +21,7 @@ public class Server {
                 return lastGuiededSeat;
             }
             fullSeatCounter++;
-            if(fullSeatCounter == Seats.getTableCount()+1){
+            if(fullSeatCounter == this.chickenSeats.getTableCount()+1){
                 System.out.println("죄송합니다! "+targetClient.teamName+"님 빈 좌석이 없습니다.");
                 return -1;
             }
