@@ -85,14 +85,91 @@ Chicken Maker
 
 #### Initialize : 4 X 4 2D Array
 
-1.Array Elements are Tables.  
-2.If value of array element is 0. There is empty table else, the Table is not empty and value is The number of people sitting at that table.
+1.Array Elements are Clients.  
+2.If value of array element is null. There is no client in table else, the Table is not empty and value is client class object.
  
-### (3) Server
+### (3) Clients
+1. constructor(int numOfClients,String teamName)
+~~~
+    int this.numOfClients = numOfClients;
+    int this.teamName = teamName;
+    int this.guiededTableNum = null;
+    this.serverCall();
+~~~
+2. this.serverCall()
+~~~
+    // 손님은 서버를 호출하여 좌석을 안내받습니다.
+    int this.guiededTableNum = Server.findFreeSeat(this);
+    Timer.schedule(orderTask,Math.floor(Math.random()*10000)+3000);   
+~~~
+3. this.callServerToOrder()
+~~~
+    String this.selectedMenu = this.selectMenu();
+    Server.takeOrder(this.selectedMenu , this.guiededTableNum);
+~~~
 
+4. this.getChicken(TaskNode)
+~~~
+    Timer.schedule(eatTask,Math.floor(Math.random()*30000)+60000);
+    eatTask(){
+        Counter.getPaid(TaskNode,this.numOfClient);
+    }
+~~~
+### (4) Server
 
+1. this.findFreeSeat(Client targetClient)
+~~~
+    constructor(){
+    int this.lastGuiededSeat = 0;
+    }
+    
+    Client [][] seatState = Seat.getSeatState();
+    int fullSeatCounter = 0;
+    
+    while(true){
+        this.lastGuiededSeat = (++this.lastGuiededSeat % 16);
+        int row = (this.lastGuiededSeat / 4);
+        int col = (this.lastGuiededSeat % 4)
+        
+        if(seatState[row][col] == null){
+            seatState[row][col] = targetClient;
+            return lastGuiededSeat;
+        }
+        fullSeatCounter++;
+        if(fullSeatCounter == seats.getTableCount()+1){
+            System.out.println("죄송합니다! "+teamName+"님 빈 좌석이 없습니다.");
+            break;
+        }
+    }
+    
+    // 실제 Position은 (lastGuiededSeat / 4) 의 몫과 나머지
+~~~
 
+2. this.takeOrder(String chickenName , int tableNum)
+~~~
+    TaskNode = Queue.getLast();
+    int issuedOrderNum = TaskNode.orderNum + 1;
+    Kitchen.orderPush(chickenName , tableNum , issuedOrderNum);
+~~~
+3. this.startServing(TaskNode)
+~~~
+    Client [][] seatState = Seat.getSeatState();
+    int row = (TaskNode.tableNum / 4);
+    int col = (TaskNode.tableNum % 4);
+   seatState[row][col].getChicken(TaskNode);
+~~~
 
-
-
-
+### (5) Counter 
+1.this.getPaid(TaskNode ,int numOfClients)
+~~~
+    int row = (TaskNode.tableNum / 4);
+    int col = (TaskNode.tableNum % 4);
+    seatState[row][col] = null;
+    
+    this.writeLog(TaskNode , numOfClients);
+~~~
+2. this.writeLog(TaskNode , int numOfClients)
+~~~
+    // DB.connection()...
+    // Insert Some Data...
+~~~
