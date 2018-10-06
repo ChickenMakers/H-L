@@ -81,6 +81,16 @@ Chicken Maker
     }
 ~~~
 
+### (2) Seats
+
+#### Initialize : 4 X 4 2D Array
+
+1.Array Elements are Tables.  
+2.If value of array element is 0. There is empty table else, the Table is not empty and value is The number of people sitting at that table.
+ 
+### (3) Server
+
+
 
 
 
