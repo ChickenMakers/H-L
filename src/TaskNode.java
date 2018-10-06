@@ -1,4 +1,5 @@
 public class TaskNode {
+
     public String chickenName;
     public int cookingTime;
     public int tableNum;

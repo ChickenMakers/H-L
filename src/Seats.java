@@ -16,16 +16,16 @@ public class Seats {
     }
 
     private void initMatrix() {
-        for (int row = 0; row < ; row++) {
-            for (int col = 0; col < ; col++) {
+        for (int row = 0; row < this.N; row++) {
+            for (int col = 0; col < this.N; col++) {
                 this.Seats_structure[row][col] = null;
             }
         }
     }
     public Clients[][] getSeatState() {
         Clients[][] Seats_copy = new Clients[this.N][this.N];
-        for (int row = 0; row < ; row++) {
-            for (int col = 0; col < ; col++) {
+        for (int row = 0; row < this.N; row++) {
+            for (int col = 0; col < this.N; col++) {
                 Seats_copy[row][col] = this.Seats_structure[row][col];
             }
         }
@@ -34,5 +34,4 @@ public class Seats {
     public int getTableCount() {
         return this.N * this.N;
     }
-
 }
