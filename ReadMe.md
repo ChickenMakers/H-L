@@ -127,7 +127,7 @@ Chicken Maker
     int fullSeatCounter = 0;
     
     while(true){
-        this.lastGuiededSeat = (++this.lastGuiededSeat % 16);
+        this.lastGuiededSeat = (++this.lastGuiededSeat % seats.getTableCount());
         int row = (this.lastGuiededSeat / 4);
         int col = (this.lastGuiededSeat % 4)
         
