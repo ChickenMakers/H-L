@@ -78,7 +78,8 @@ public class Kitchen {
         return cookTime;
     }
 
-    public TaskNode getLast() {
-        return OQ.getLast();
+    public int getLastOrderNum() {
+        if (OQ.isEmpty()) {return -1;}
+        return OQ.getLast().orderNum;
     }
 }

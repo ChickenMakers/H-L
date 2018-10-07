@@ -35,14 +35,13 @@ public class Server {
         return lastGuiededSeat;
     }
     public void takeOrder(String chickenName, int tableNum){
-//        TaskNode taskNode = kitchen.getLast();
-//        if (taskNode != null) {
-//            issuedOrderNum = 1;
-//        }
-//        else {
-//            issuedOrderNum = taskNode.orderNum + 1;
-//        }
-        issuedOrderNum++;
+        issuedOrderNum = kitchen.getLastOrderNum();
+        if (issuedOrderNum == -1) {
+            issuedOrderNum = 1;
+        }
+        else {
+            issuedOrderNum++;
+        }
         kitchen.orderPush(chickenName, tableNum, issuedOrderNum);
         System.out.println("[Server] "+tableNum+"번 테이블에서 "+chickenName+" 을 주문하였습니다!");
     }
