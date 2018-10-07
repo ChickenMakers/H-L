@@ -1,3 +1,4 @@
+import java.sql.Date;
 
 public class Counter {
     private Server server;
@@ -13,10 +14,26 @@ public class Counter {
         int col = (taskInfo.tableNum % this.server.chickenSeats.getN());
         System.out.println("[Counter] "+taskInfo.tableNum + "번 테이블 손님이 계산을 완료했습니다.");
         this.server.cleanTable(row,col);
-        //this.writeLog(taskInfo,numOfClients);
+        this.writeLog(taskInfo,numOfClients);
+    }
+    private void writeLog(TaskNode taskInfo , int numOfClients){
+//        revenue_id, chickenName, payment, client, orderNum, dealingDate
+
+        String ChickName = taskInfo.chickenName;
+        int payment = getPrice(ChickName);
+//        numOfClients
+        int orderNum = taskInfo.orderNum;
+        String dealingDate = getDate();
 
     }
-//    private void writeLog(TaskNode taskInfo , int numOfClients){
-//
-//    }
+
+    private int getPrice(String chickName){
+        Menus menus = new Menus();
+        return menus.getPriceMap().get(chickName);
+    }
+    private String getDate() {
+        java.util.Date mydate = new java.util.Date();
+        Date sqldate = new Date(mydate.getTime());
+        return sqldate.toString();
+    }
 }
