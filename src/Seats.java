@@ -2,11 +2,11 @@ public class Seats {
     private int N = 4;
     private Clients Seats_structure[][] = null;
 
-    void  Seats(int N) {
+    Seats(int N) {
         this.N = N;
         this.makeMatrix(this.N);
     }
-    void  Seats() {
+    Seats() {
         this.makeMatrix(this.N);
     }
 
@@ -23,13 +23,14 @@ public class Seats {
         }
     }
     public Clients[][] getSeatState() {
-        Clients[][] Seats_copy = new Clients[this.N][this.N];
-        for (int row = 0; row < this.N; row++) {
-            for (int col = 0; col < this.N; col++) {
-                Seats_copy[row][col] = this.Seats_structure[row][col];
-            }
-        }
-        return Seats_copy;
+//        Clients[][] Seats_copy = new Clients[this.N][this.N];
+//        for (int row = 0; row < this.N; row++) {
+//            for (int col = 0; col < this.N; col++) {
+//                Seats_copy[row][col] = this.Seats_structure[row][col];
+//            }
+//        }
+//        return Seats_copy;
+        return this.Seats_structure;
     }
     public void cleanTable(int row , int col){
         this.Seats_structure[row][col] = null;
@@ -39,5 +40,8 @@ public class Seats {
     }
     public int getTableCount() {
         return this.N * this.N;
+    }
+    public boolean isNullElement(int row, int col) {
+        return this.Seats_structure[row][col] == null;
     }
 }

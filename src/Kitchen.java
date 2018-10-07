@@ -57,7 +57,7 @@ public class Kitchen {
             }
         };
         Timer timer = new Timer();
-        timer.schedule(task, pop_node.cookingTime);
+        timer.schedule(task, pop_node.cookingTime * 100);
     }
 
     private void endCooking(TaskNode node) {
