@@ -53,7 +53,7 @@ public class Clients {
                 server.counter.getPaid(taskInfo,numOfClients);
             }
         };
-        delay = (int)(Math.floor(Math.random()*30000)+60000);
+        delay = (int)(Math.floor(Math.random()*1000)+1000);
         timer.schedule(task, delay);
     }
 }

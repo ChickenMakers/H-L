@@ -1,11 +1,12 @@
 import java.sql.Date;
+import java.sql.SQLException;
 
 public class Counter {
     private Server server;
-    //private DB_TRANSACTION MYDB;
+    private DB_TRANSACTION MYDB;
     Counter(Server server){
         this.server = server;
-        //this.MYDB = new DB_TRANSACTION();
+        this.MYDB = new DB_TRANSACTION();
     }
     public void getPaid(TaskNode taskInfo , int numOfClients){
 
@@ -15,25 +16,31 @@ public class Counter {
         System.out.println("[Counter] "+taskInfo.tableNum + "번 테이블 손님이 계산을 완료했습니다.");
         this.server.cleanTable(row,col);
         this.writeLog(taskInfo,numOfClients);
+
     }
     private void writeLog(TaskNode taskInfo , int numOfClients){
 //        revenue_id, chickenName, payment, client, orderNum, dealingDate
 
         String ChickName = taskInfo.chickenName;
         int payment = getPrice(ChickName);
-//        numOfClients
         int orderNum = taskInfo.orderNum;
-        String dealingDate = getDate();
-
+        Date dealingDate = getDate();
+        try{
+            this.MYDB.DB_INSERT_QUERY(ChickName , payment , numOfClients , orderNum , dealingDate);
+        }
+        catch (SQLException SQL_E){
+            SQL_E.printStackTrace();
+        }
     }
 
     private int getPrice(String chickName){
         Menus menus = new Menus();
         return menus.getPriceMap().get(chickName);
     }
-    private String getDate() {
+
+    private Date getDate() {
         java.util.Date mydate = new java.util.Date();
         Date sqldate = new Date(mydate.getTime());
-        return sqldate.toString();
+        return sqldate;
     }
 }
