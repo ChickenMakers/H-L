@@ -6,10 +6,10 @@ public class Clients {
     public int numOfClients;
     public String teamName;
     public int guiededTableNum = -1;
-    private Server server = null;
-    public String selectedMenu = null;
+    private Server server;
+    public String selectedMenu = "";
 
-    void  Clients(int numOfClients, String teamName, Server server) {
+    Clients(int numOfClients, String teamName, Server server) {
         this.numOfClients = numOfClients;
         this.teamName = teamName;
         this.server = server;
@@ -26,7 +26,7 @@ public class Clients {
         TimerTask task = new TimerTask() {
             @Override
             public void run() {
-                this.callServerToOrder();
+                callServerToOrder();
             }
         };
         delay = (int)(Math.floor(Math.random()*10000)+3000);
@@ -35,20 +35,20 @@ public class Clients {
 
     public void callServerToOrder() {
         this.selectedMenu  = this.selectMenu();
-        Server.takeOrder(this.selectedMenu, this.guiededTableNum);
+        server.takeOrder(this.selectedMenu, this.guiededTableNum);
     }
 
     private String selectMenu() {
-        return "hi";
+
     }
 
-    public void getChicken(TaskNode) {
+    public void getChicken(TaskNode taskInfo) {
         int delay;
         Timer timer = new Timer();
         TimerTask task = new TimerTask() {
             @Override
             public void run() {
-                counter.getpaid(TaskNode, this.numOfClients);
+                server.counter.getPaid(taskInfo,numOfClients);
             }
         };
         delay = (int)(Math.floor(Math.random()*30000)+60000);

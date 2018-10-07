@@ -6,10 +6,12 @@ public class Counter {
     public void getPaid(TaskNode taskInfo , int numOfClients){
 
         Clients [][] seatState = this.server.chickenSeats.getSeatState();
-        //this.server.cleanTable(row,col);
+        int row = (taskInfo.tableNum / this.server.chickenSeats.getN());
+        int col = (taskInfo.tableNum % this.server.chickenSeats.getN());
+        this.server.cleanTable(row,col);
 
     }
-    private void writeLog(TaskNode taskInfo , int numOfClients){
-        //pass
-    }
+//    private void writeLog(TaskNode taskInfo , int numOfClients){
+//
+//    }
 }

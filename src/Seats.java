@@ -31,6 +31,12 @@ public class Seats {
         }
         return Seats_copy;
     }
+    public void cleanTable(int row , int col){
+        this.Seats_structure[row][col] = null;
+    }
+    public int getN(){
+        return this.N;
+    }
     public int getTableCount() {
         return this.N * this.N;
     }
