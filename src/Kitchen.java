@@ -47,7 +47,7 @@ public class Kitchen {
     private int getCookingTime(String ChickName) {
         int cookTime;
         Menus menus = new Menus();
-        cookTime = menus.getCookingTimeMap().get(chickName);
+        cookTime = menus.getCookingTimeMap().get(ChickName);
         return cookTime;
     }
 }
