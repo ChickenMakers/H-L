@@ -39,7 +39,9 @@ public class Clients {
     }
 
     private String selectMenu() {
-
+        Menus menus = new Menus();
+        int randomNum = (int)(Math.random()* menus.getCountOfMenu()) + 1;
+        return menus.getMenuMap().get(randomNum);
     }
 
     public void getChicken(TaskNode taskInfo) {
