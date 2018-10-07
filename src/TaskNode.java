@@ -12,4 +12,11 @@ public class TaskNode {
         this.orderNum = orderNum;
     }
 
+    TaskNode() {
+        this.chickenName = null;
+        this.cookingTime = null;
+        this.tableNum = null;
+        this.orderNum = null;
+    }
+
 }
