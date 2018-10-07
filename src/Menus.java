@@ -5,6 +5,7 @@ public class Menus {
 
     private TreeMap< Integer , String > menuMap;
     private HashMap< String , Integer > cookingTimeMap;
+    private HashMap< String , Integer > priceMap;
 
     Menus(){
 
@@ -22,6 +23,12 @@ public class Menus {
         cookingTimeMap.put("짭조름 파닭 치킨",50);
         cookingTimeMap.put("양념반 후라이드반",40);
 
+        priceMap = new HashMap<String, Integer>();
+        priceMap.put("후라이드 치킨",15000);
+        priceMap.put("양념 치킨",20000);
+        priceMap.put("양파 치킨",20000);
+        priceMap.put("짭조름 파닭 치킨",22000);
+        priceMap.put("양념반 후라이드반",30000);
     }
 
     public TreeMap< Integer , String > getMenuMap(){
@@ -30,5 +37,9 @@ public class Menus {
 
     public HashMap< String , Integer > getCookingTimeMap(){
         return this.cookingTimeMap;
+    }
+
+    public HashMap< String , Integer > getPriceMap(){
+        return this.priceMap;
     }
 }
