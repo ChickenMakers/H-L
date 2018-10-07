@@ -5,18 +5,18 @@ public class TaskNode {
     public int tableNum;
     public int orderNum;
 
+    TaskNode() {
+        this.chickenName = null;
+        this.cookingTime = 0;
+        this.tableNum = 0;
+        this.orderNum = 0;
+    }
+
     TaskNode(String chickenName , int cookingTime , int tableNum , int orderNum){
         this.chickenName = chickenName;
         this.cookingTime = cookingTime;
         this.tableNum = tableNum;
         this.orderNum = orderNum;
-    }
-
-    TaskNode() {
-        this.chickenName = null;
-        this.cookingTime = null;
-        this.tableNum = null;
-        this.orderNum = null;
     }
 
 }

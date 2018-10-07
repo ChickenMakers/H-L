@@ -1,18 +1,45 @@
+
 import java.util.LinkedList;
 import java.util.TimerTask;
 import java.util.Timer;
 
 public class Kitchen {
-    OrderQueue OQ = new OrderQueue();
+
+    private class OrderQueue {
+        private LinkedList<TaskNode> linkedList = new LinkedList<>();
+        public void push(TaskNode node) {
+            linkedList.addLast(node);
+        }
+
+        public TaskNode pop() {
+            return linkedList.pop();
+        }
+
+        public boolean isEmpty(){
+            return linkedList.isEmpty();
+        }
+
+        public TaskNode getLast() {
+            return linkedList.getLast();
+        }
+
+        public TaskNode getFirst() {
+            return linkedList.getFirst();
+        }
+
+//    push, pop, isEmpty, getLast, getFirst
+    }
+
+    private OrderQueue OQ = new OrderQueue();
     private boolean isCooking = false;
-    private Server server = null;
+    private Server server;
 
     Kitchen(Server server) {
         this.server = server;
     }
     public void orderPush(String chickName, int tableNum, int orderNum) {
-        int cooktime = this.getCookingTime(chickName);
-        TaskNode push_node = new TaskNode(chickName, cooktime, tableNum, orderNum);
+        int cookingtime = this.getCookingTime(chickName);
+        TaskNode push_node = new TaskNode(chickName, cookingtime, tableNum, orderNum);
         OQ.push(push_node);
         if (! this.isCooking)  //this.isCooking == false
         {
@@ -26,7 +53,7 @@ public class Kitchen {
         TimerTask task = new TimerTask() {
             @Override
             public void run() {
-                this.endCooking(pop_node);
+                endCooking(pop_node);
             }
         };
         Timer timer = new Timer();
@@ -50,29 +77,8 @@ public class Kitchen {
         cookTime = menus.getCookingTimeMap().get(ChickName);
         return cookTime;
     }
-}
-
-public class OrderQueue {
-    private LinkedList<TaskNode> linkedList = new LinkedList<>();
-    public void push(TaskNode node) {
-        linkedList.addLast(TaskNode node);
-    }
-
-    public TaskNode pop() {
-        return linkedList.pop();
-    }
-
-    public boolean isEmpty(){
-        return linkedList.isEmpty();
-    }
 
     public TaskNode getLast() {
-        return linkedList.getLast();
+        return OQ.getLast();
     }
-
-    public TaskNode getFirst() {
-        return linkedList.getFirst();
-    }
-
-//    push, pop, isEmpty, getLast, getFirst
 }

@@ -42,4 +42,9 @@ public class Menus {
     public HashMap< String , Integer > getPriceMap(){
         return this.priceMap;
     }
+
+    public int getCountOfMenu() {
+        return 5;
+    }
+
 }

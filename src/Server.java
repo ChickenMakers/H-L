@@ -3,9 +3,11 @@ public class Server {
     private int lastGuiededSeat = -1;
     public Seats chickenSeats;
     public Counter counter;
+    private Kitchen kitchen;
     Server(){
         chickenSeats = new Seats();
         counter = new Counter(this);
+        kitchen = new Kitchen(this);
     }
 
     public int findFreeSeat(Clients targetClient){
@@ -29,6 +31,20 @@ public class Server {
             }
         }
     }
+    public void takeOrder(String chickenName, int tableNum){
+        int issuedOrderNum;
+        TaskNode taskNode = kitchen.getLast();
+        issuedOrderNum = taskNode.orderNum+1;
+        kitchen.orderPush(chickenName, tableNum, issuedOrderNum);
+    }
+
+    public void startServing(TaskNode taskNode){
+        Clients[][] seatState = chickenSeats.getSeatState();
+        int tablenum = taskNode.tableNum;
+        int N = chickenSeats.getN();
+        seatState[tablenum / N][tablenum % N].getChicken(taskNode);
+    }
+
     public void cleanTable(int row , int col){
         this.chickenSeats.cleanTable(row,col);
         System.out.println((row*this.chickenSeats.getN())+(col)+"번 테이블을 정리하였습니다.");
