@@ -12,12 +12,13 @@ public class DB_TRANSACTION {
         try{
             Class.forName("com.mysql.cj.jdbc.Driver");
             String jdbcUrl = String.format(
-                    "jdbc:mysql://%s/%s?cloudSqlInstance=%s&socketFactory=com.google.cloud.sql.mysql.SocketFactory&useSSL=false",
-                    "104.199.153.98",
+                    "jdbc:mysql://google/%s?cloudSqlInstance=%s&socketFactory=com.google.cloud.sql.mysql.SocketFactory&useSSL=false",
                     "chicken_logs",
                     "chickenmakers-218609:asia-east1:chicken-logs");
             connection = DriverManager.getConnection(jdbcUrl , MYAUTH.getAUTH_ID(), MYAUTH.getATUH_PW());
         }
+//        jdbc:mysql://google/<DATABASE_NAME>?cloudSqlInstance=<INSTANCE_CONNECTION_NAME>&socketFactory=com.google.cloud.sql.mysql.SocketFactory&user=<MYSQL_USER_NAME>&password=<MYSQL_USER_PASSWORD>&useSSL=false
+
         catch(SQLException SQL_E){
             SQL_E.printStackTrace();
         }
