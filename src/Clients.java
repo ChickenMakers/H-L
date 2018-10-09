@@ -29,7 +29,7 @@ public class Clients {
                 callServerToOrder();
             }
         };
-        delay = (int)(Math.floor(Math.random()*10000)+3000);
+        delay = (int)(Math.floor(Math.random()*1000)+1000);
         timer.schedule(task, delay);
     }
 
