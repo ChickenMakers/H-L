@@ -1,4 +1,5 @@
-import java.sql.Date;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.sql.SQLException;
 
 public class Counter {
@@ -24,7 +25,7 @@ public class Counter {
         String ChickName = taskInfo.chickenName;
         int payment = getPrice(ChickName);
         int orderNum = taskInfo.orderNum;
-        Date dealingDate = getDate();
+        String dealingDate = getDate();
         try{
             this.MYDB.DB_INSERT_QUERY(ChickName , payment , numOfClients , orderNum , dealingDate);
         }
@@ -38,9 +39,11 @@ public class Counter {
         return menus.getPriceMap().get(chickName);
     }
 
-    private Date getDate() {
-        java.util.Date mydate = new java.util.Date();
-        Date sqldate = new Date(mydate.getTime());
-        return sqldate;
+    private String getDate() {
+        Date date = new Date();
+        java.text.SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String currentTime = sdf.format(date);
+        return currentTime;
     }
+
 }
